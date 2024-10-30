@@ -1,30 +1,69 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/">{{ $t("menu.home") }}</router-link>
+    <router-link to="/">{{ $t("menu.contacts") }}</router-link>
   </nav>
-  <router-view />
+  <div>
+    <div class="box">
+      <h1>Language: {{ $i18n.locale }}</h1>
+      <button @click="changeL('en')">EN</button>
+      <button @click="changeL('ua')">UA</button>
+    </div>
+    <div class="box">
+      <h1>{{ $t("menu.home") }}</h1>
+      <button @click="login">{{ $t("actionTitles.login") }}</button>
+      <button @click="logout">{{ $t("actionTitles.logout") }}</button>
+    </div>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+export default {
+  methods: {
+    changeL(lang) {
+      this.$i18n.locale = lang;
+    },
+  },
+};
+</script>
+
+<style lang="css" scoped>
+.box {
 }
 
 nav {
-  padding: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #3498db;
+  padding: 15px;
+  border-radius: 8px;
 }
 
 nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+nav a:hover {
+  background-color: #2980b9;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #3498db;
+  color: white;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
 }
 </style>
